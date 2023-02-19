@@ -2090,7 +2090,16 @@ static bool osdDrawSingleElement(uint8_t item)
                 p = "ANGL";
             else if (FLIGHT_MODE(HORIZON_MODE))
                 p = "HOR ";
-
+		
+	    if (IS_RC_MODE_ACTIVE(BOXAUTOLEVEL) && (FLIGHT_MODE(ANGLE_MODE) || FLIGHT_MODE(HORIZON_MODE) || FLIGHT_MODE(NAV_COURSE_HOLD_MODE))) {
+		// Allocate memory for the new string
+		char *new_p = malloc(strlen(p) + 2);
+		strcpy(new_p, p);
+		// Append the "L" character to the end of the new string
+		strcat(new_p, "L");
+		p = new_p;
+		}
+		
             displayWrite(osdDisplayPort, elemPosX, elemPosY, p);
             return true;
         }
