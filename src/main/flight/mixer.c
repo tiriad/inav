@@ -611,7 +611,7 @@ void FAST_CODE mixTable()
 
 int16_t getThrottlePercent(void)
 {
-    int16_t thr = (constrain(rcCommand[THROTTLE], PWM_RANGE_MIN, PWM_RANGE_MAX ) - PWM_RANGE_MIN * 100 / (PWM_RANGE_MAX - PWM_RANGE_MIN);
+    int16_t thr = (constrain(rcCommand[THROTTLE], PWM_RANGE_MIN, PWM_RANGE_MAX ) - PWM_RANGE_MIN) * 100 / (PWM_RANGE_MAX - PWM_RANGE_MIN);
     return thr;
 }
 
