@@ -2028,7 +2028,7 @@ static bool osdDrawSingleElement(uint8_t item)
                 p = " HOR";
 		
 	    if (IS_RC_MODE_ACTIVE(BOXAUTOLEVEL) && (FLIGHT_MODE(ANGLE_MODE) || FLIGHT_MODE(HORIZON_MODE) || (navigationRequiresAngleMode() && !navigationIsControllingAltitude()))) {
-		char *new_p = malloc(strlen(p) + 1);
+		char new_p[strlen(p) + 1];
 		strcpy(new_p, p);
 		strcat(new_p, "L");
 		p = new_p;
