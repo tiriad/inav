@@ -2035,6 +2035,7 @@ static bool osdDrawSingleElement(uint8_t item)
 		}
 
             displayWrite(osdDisplayPort, elemPosX, elemPosY, p);
+	    free(p)
             return true;
         }
 
