@@ -2025,15 +2025,8 @@ static bool osdDrawSingleElement(uint8_t item)
             else if (FLIGHT_MODE(ANGLE_MODE))
                 p = "ANGL";
             else if (FLIGHT_MODE(HORIZON_MODE))
-                p = " HOR";
-		
-	    if (IS_RC_MODE_ACTIVE(BOXAUTOLEVEL) && (FLIGHT_MODE(ANGLE_MODE) || FLIGHT_MODE(HORIZON_MODE) || (navigationRequiresAngleMode() && !navigationIsControllingAltitude()))) {
-		char new_p[strlen(p) + 1];
-		strcpy(new_p, p);
-		strcat(new_p, "L");
-		p = new_p;
-		}
-
+                p = "HOR ";	
+	    
             displayWrite(osdDisplayPort, elemPosX, elemPosY, p);
             return true;
         }
@@ -4584,8 +4577,11 @@ textAttributes_t osdGetSystemMessage(char *buff, size_t buff_size, bool isCenter
                         messages[messageCount++] = OSD_MESSAGE_STR(OSD_MSG_AUTOTUNE);
                         if (FLIGHT_MODE(MANUAL_MODE)) {
                             messages[messageCount++] = OSD_MESSAGE_STR(OSD_MSG_AUTOTUNE_ACRO);
-                        }
+                        }                        
                     }
+                    if (IS_RC_MODE_ACTIVE(BOXAUTOLEVEL) && (FLIGHT_MODE(ANGLE_MODE) || FLIGHT_MODE(HORIZON_MODE) || (navigationRequiresAngleMode() && !navigationIsControllingAltitude()))) {
+		                messages[messageCount++] = OSD_MESSAGE_STR(OSD_MSG_AUTOLEVEL);
+		            }
                     if (FLIGHT_MODE(HEADFREE_MODE)) {
                         messages[messageCount++] = OSD_MESSAGE_STR(OSD_MSG_HEADFREE);
                     }
